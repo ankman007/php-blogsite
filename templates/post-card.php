@@ -1,12 +1,20 @@
 <?php 
 include_once './database.php';
+include 'templates/functions.php';
 
 $page = (isset($_GET['page'])) ? $_GET['page'] : 1;
 $post_per_page = 5;
 $offset = ($page-1) * $post_per_page;
 
-$query = "SELECT * FROM post LIMIT $offset, $post_per_page;";
+if (isset($_GET['search'])){
+    $keyword = $_GET['search'];
+    $query = "SELECT * FROM post WHERE title LIKE '%$keyword%' ORDER BY id DESC LIMIT $offset, $post_per_page;";
+}
+else {
+    $query = "SELECT * FROM post ORDER BY id DESC LIMIT $offset, $post_per_page;";
+}
 $results = mysqli_query($conn, $query); 
+
 
 if (!empty($results)){
   foreach ($results as $row){
@@ -20,20 +28,14 @@ if (!empty($results)){
             </div>
             <div class="col-md-7">
                 <div class="card-body">
-                <?php
-                    $dateString = $row['created_at']; // Fetching the date from the database
-                    $date = new DateTime($dateString);
-                    $formattedDate = $date->format('F j, Y');
-                ?>
                 <h5 class="card-title"><?php echo $row['title'] ?></h5>
                 <p class="card-text text-truncate" style="max-width: 100%; overflow: hidden; white-space: nowrap;"><?php echo $row['post_description'] ?></p>
-                <p class="card-text"><small class="text-muted"><?php echo 'Posted On '. $formattedDate ?></small></p>
+                <p class="card-text"><small class="text-muted"><?php echo 'Posted On '. formatDateTime($row['created_at']) ?></small></p>
                 </div>
             </div>
         </div>
     </a>
 </div>
-
 <?php 
     }
 }

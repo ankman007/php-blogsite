@@ -24,9 +24,15 @@
     </div>
     </div>
 
-    <?php 
-// Pagination links
-$query = "SELECT COUNT(*) AS total_posts FROM post";
+<?php 
+
+if (isset($_GET['search'])){
+  $keyword = $_GET['search'];
+  $query = "SELECT COUNT(*) AS total_posts FROM post WHERE title LIKE '%$keyword%'";
+}
+else {
+  $query = "SELECT COUNT(*) AS total_posts FROM post";
+}
 $result = mysqli_query($conn, $query);
 $row = mysqli_fetch_assoc($result);
 $total_posts = $row['total_posts'];
