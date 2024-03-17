@@ -1,6 +1,11 @@
 <?php 
 include_once './database.php';
-$query = "SELECT * FROM post;";
+
+$page = (isset($_GET['page'])) ? $_GET['page'] : 1;
+$post_per_page = 5;
+$offset = ($page-1) * $post_per_page;
+
+$query = "SELECT * FROM post LIMIT $offset, $post_per_page;";
 $results = mysqli_query($conn, $query); 
 
 if (!empty($results)){

@@ -3,6 +3,7 @@
 include_once 'database.php';
 include 'templates/header.php';
 include 'templates/navigation.php';
+
 $post_id = $_GET['id'];
 $query = "SELECT * FROM post WHERE id=$post_id;";
 $results = mysqli_query($conn, $query);

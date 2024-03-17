@@ -24,20 +24,33 @@
     </div>
     </div>
 
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-          <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-          </li>
-        </ul>
-      </nav>
-      
+    <?php 
+// Pagination links
+$query = "SELECT COUNT(*) AS total_posts FROM post";
+$result = mysqli_query($conn, $query);
+$row = mysqli_fetch_assoc($result);
+$total_posts = $row['total_posts'];
+$total_pages = ceil($total_posts / $post_per_page);
+?>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item <?php echo ($page <= 1) ? 'disabled' : ''; ?>">
+            <a class="page-link" href="?page=<?php echo ($page <= 1) ? 1 : ($page - 1); ?>" tabindex="-1" aria-disabled="true">Previous</a>
+        </li>
+
+        <?php for ($i = 1; $i <= $total_pages; $i++) { ?>
+            <li class="page-item <?php echo ($page == $i) ? 'active' : ''; ?>">
+                <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+            </li>
+        <?php } ?>
+
+        <li class="page-item <?php echo ($page >= $total_pages) ? 'disabled' : ''; ?>">
+            <a class="page-link" href="?page=<?php echo ($page >= $total_pages) ? $total_pages : ($page + 1); ?>">Next</a>
+        </li>
+    </ul>
+</nav>
+
 <?php 
-  include 'templates/footer.php';
+include 'templates/footer.php';
 ?>
