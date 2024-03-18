@@ -2,6 +2,7 @@
   include_once 'database.php';
   include 'templates/header.php';
   include 'templates/navigation.php';
+  include_once 'templates/functions.php';
   
 ?>
 

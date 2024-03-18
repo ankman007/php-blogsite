@@ -29,4 +29,25 @@ function formatDateTime($dateString){
     $formattedDate = $date->format('F j, Y');
     return $formattedDate;
 }
+
+function getSubMenuNumber($conn, $menu_id){
+    if ($menu_id === null) {
+        return 0; 
+    }
+
+    $query = "SELECT * FROM submenu WHERE parent_menu_id=$menu_id;";
+    $run = mysqli_query($conn, $query);
+    return mysqli_num_rows($run);
+}
+
+function getSubMenu($conn, $menu_id){
+    $query = "SELECT * FROM submenu WHERE parent_menu_id=$menu_id;";
+    $run = mysqli_query($conn, $query);
+    $data[] = array();
+    while($i = mysqli_fetch_assoc($run)){
+        $data[] = $i;
+    }
+    return $data;
+}
+
 ?>

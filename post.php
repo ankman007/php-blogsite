@@ -2,7 +2,7 @@
 include_once 'database.php';
 include 'templates/header.php';
 include 'templates/navigation.php';
-include 'templates/functions.php';
+include_once 'templates/functions.php';
 
 $post_id = $_GET['id'];
 $query = "SELECT * FROM post WHERE id=$post_id;";
@@ -55,8 +55,11 @@ foreach ($post_images as $image){
     <h4>Related Posts</h4>
 
 <?php 
+$category_id = isset($row['category_id']) ? $row['category_id'] : 0; 
 
-$pquery = "SELECT * FROM post WHERE category_id={$row['category_id']} ORDER BY id DESC;";
+$pquery = "SELECT * FROM post WHERE category_id = $category_id ORDER BY id DESC;";
+
+// $pquery = "SELECT * FROM post WHERE category_id={$row['category_id']} ORDER BY id DESC;";
 $prun = mysqli_query($conn, $pquery);
 
 while($rpost = mysqli_fetch_assoc($prun)){

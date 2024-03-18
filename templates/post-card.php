@@ -1,6 +1,5 @@
 <?php 
 include_once './database.php';
-include 'templates/functions.php';
 
 $page = (isset($_GET['page'])) ? $_GET['page'] : 1;
 $post_per_page = 5;
