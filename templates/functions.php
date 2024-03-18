@@ -53,11 +53,17 @@ function getSubMenu($conn, $menu_id){
 function getComments($conn, $post_id){
     $query = "SELECT * FROM comments WHERE post_id=$post_id;";
     $run = mysqli_query($conn, $query);
-    $data = array(); // Initialize $data as an empty array
+    $data = array(); 
     while ($row = mysqli_fetch_assoc($run)){
-        $data[] = $row; // Append each row to the $data array
+        $data[] = $row; 
     }
     return $data;
 }
 
+function getAdminInfo($conn, $email){
+    $query = "SELECT * FROM admin WHERE email='$email';";
+    $run = mysqli_query($conn, $query);
+    $data = mysqli_fetch_assoc($run);
+    return $data;
+}
 ?>
