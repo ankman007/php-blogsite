@@ -13,16 +13,11 @@
             include 'templates/post-card.php';
         ?>
     </div>
-    <div class="col-4">
         <?php
-          $featured_post_count = 3;
-          while ($featured_post_count >= 1){
+          
             include 'templates/featured-card.php';
-            $featured_post_count --;
-          }
         ?>
           
-    </div>
     </div>
 
 <?php 

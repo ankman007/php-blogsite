@@ -50,4 +50,14 @@ function getSubMenu($conn, $menu_id){
     return $data;
 }
 
+function getComments($conn, $post_id){
+    $query = "SELECT * FROM comments WHERE post_id=$post_id;";
+    $run = mysqli_query($conn, $query);
+    $data = array(); // Initialize $data as an empty array
+    while ($row = mysqli_fetch_assoc($run)){
+        $data[] = $row; // Append each row to the $data array
+    }
+    return $data;
+}
+
 ?>

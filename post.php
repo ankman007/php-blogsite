@@ -32,8 +32,17 @@ foreach ($post_images as $image){
      <img src="images/<?=$image['image_name']?>" style="max-width: 100%;">
 <?php } ?>                    
                     <p class="card-text"><?php echo $row['post_description']?></p>
-                    <a href="#" class="btn btn-primary">Share this post</a>
-                    <a href="#" class="btn btn-primary">Comment on this</a>
+                    <!-- AddToAny BEGIN -->
+                    <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+                        <a class="a2a_button_facebook"></a>
+                        <a class="a2a_button_email"></a>
+                        <a class="a2a_button_linkedin"></a>
+                        <a class="a2a_button_reddit"></a>
+                        <a class="a2a_button_facebook_messenger"></a>
+                        <a class="a2a_button_whatsapp"></a>
+                        <a class="a2a_button_x"></a>
+                    </div><br>
+                    <a href="#" class="btn btn-primary">Comment on this</a>   
                     <?php 
 }
 
@@ -41,15 +50,11 @@ foreach ($post_images as $image){
                 </div>
             </div>
         </div>
-        <div class="col-lg-4">
             <?php
-            $featured_post_count = 3;
-            while ($featured_post_count >= 1){
+            
                 include 'templates/featured-card.php';
-                $featured_post_count --;
-            }
+            
             ?>
-        </div>
     </div>
     <div>
     <h4>Related Posts</h4>
@@ -69,6 +74,9 @@ if ($rpost['id'] == $post_id){
 }
 
 ?>
+
+<a style="text-decoration: none; color:black" href="post.php?id=<?=$rpost['id']?>">
+
     <div class="card mb-3" style="max-width: 700px;">
         <div class="row g-0">
             <div class="col-md-5" style="background-image: url('https://images.moneycontrol.com/static-mcnews/2020/04/stock-in-the-news-770x433.jpg');background-size: cover">
@@ -83,7 +91,7 @@ if ($rpost['id'] == $post_id){
                 </div>
             </div>
         </div>
-    </div>  
+    </div>  </a>
 
 <?php 
 }
@@ -94,7 +102,7 @@ if ($rpost['id'] == $post_id){
 
 
 
-
+<script async src="https://static.addtoany.com/menu/page.js"></script>
 <?php 
 include 'templates/footer.php';
 ?>
