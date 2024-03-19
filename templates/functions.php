@@ -1,5 +1,4 @@
 <?php 
-// templates/functions.php
 
 function getCategoryName($conn, $id) {
     $query = "SELECT * FROM categories WHERE category_id=$id"; 
@@ -12,6 +11,21 @@ function getCategoryName($conn, $id) {
         return "Category not found";
     }
 }
+
+function getAllCategoryName($conn){
+    $query = "SELECT * FROM categories;";
+    $run = mysqli_query($conn, $query);
+    $categories = array();
+    while ($row = mysqli_fetch_assoc($run)){
+        $categories[] = array(
+            'category_name' => $row['category_name'],
+            'category_id' => $row['category_id']
+        );
+    }    
+    return $categories;
+}
+
+
 
 function getImagesByPost($conn, $post_id){
     $query = "SELECT * FROM image WHERE post_id=$post_id;";
