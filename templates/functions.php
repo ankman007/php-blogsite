@@ -35,7 +35,7 @@ function getImagesByPost($conn, $post_id){
         $data[] = $i;
     }
     return $data;
-}
+} 
 
 function formatDateTime($dateString){
     // $dateString = $row['created_at'];
@@ -79,5 +79,12 @@ function getAdminInfo($conn, $email){
     $run = mysqli_query($conn, $query);
     $data = mysqli_fetch_assoc($run);
     return $data;
+}
+
+function getPostThumnail($conn, $id){
+    $query = "SELECT * FROM admin WHERE post_id='$id';";
+    $run = mysqli_query($conn, $query);
+    $data = mysqli_fetch_assoc($run);
+    return $data['image'];
 }
 ?>

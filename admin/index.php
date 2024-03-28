@@ -143,14 +143,14 @@ $admin = getAdminInfo($conn, $_SESSION['admin_email']);
 
       <li class="nav-item">
         <a class="nav-link " href="index.php">
-          
+        <i class="bi bi-border-style"></i>
           <span>Blog Theme</span>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link " href="index.php">
-        
+        <i class="bi bi-gear"></i>
           <span>Profile Settings</span>
         </a>
       </li>

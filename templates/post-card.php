@@ -1,5 +1,7 @@
 <?php 
 include_once './database.php';
+include_once 'functions.php';
+
 
 $page = (isset($_GET['page'])) ? $_GET['page'] : 1;
 $post_per_page = 5;
@@ -22,7 +24,7 @@ if (!empty($results)){
 <div class="card mb-3" style="max-width: 800px;">
     <a href="post.php?id=<?php echo $row['id']; ?>" style="text-decoration:none; color:black;">    
         <div class="row g-0">
-            <div class="col-md-5" style="background-image: url('https://images.moneycontrol.com/static-mcnews/2020/04/stock-in-the-news-770x433.jpg');background-size: cover">
+            <div class="col-md-5" style="background-image: url('images/<?php getPostThumnail($conn, $row['id']) ?>');background-size: cover">
                 <!-- <img src="https://images.moneycontrol.com/static-mcnews/2020/04/stock-in-the-news-770x433.jpg" alt="..."> -->
             </div>
             <div class="col-md-7">

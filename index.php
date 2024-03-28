@@ -45,7 +45,7 @@ $total_pages = ceil($total_posts / $post_per_page);
             <li class="page-item <?php echo ($page == $i) ? 'active' : ''; ?>">
                 <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
             </li>
-        <?php } ?>
+        <?php } ?> 
 
         <li class="page-item <?php echo ($page >= $total_pages) ? 'disabled' : ''; ?>">
             <a class="page-link" href="?page=<?php echo ($page >= $total_pages) ? $total_pages : ($page + 1); ?>">Next</a>
